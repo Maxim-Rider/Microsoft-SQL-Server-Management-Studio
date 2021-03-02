@@ -31,13 +31,25 @@ group by customerid
 
 --7. ¬ыберите клиентов, которые оформили более 15 заказов,
 --отсортируете данные в пор€дке убывани€ количества оформленных заказов
-select orderid as Customers_Order from orders
-where orderid > 15 
-group by orderid
-order by orderid desc 
+select customerid, count(orderid) as BoughtOrders from orders
+group by customerid
+having count(orderid) > 15
+order by count(orderid) desc
+
 
 --8. »з каких стран и из каких городов у нас 2 и более клиентов
-select count(city) as CustomersQuantity 
-from customers 
-group by city
+select country, city, count(customerid) as QuantityCustomers from customers 
+group by country, city
+having count(customerid) >= 2
 
+--9. —колько разновидностей товаров в каждой категории 
+select categoryid, count(productid) as QuantitiesEachCategories from Products
+group by categoryid
+
+--10. Ќа какую сумму товаров каждой категории у нас на складе
+--(учитывайте стоимость и количество товара на складе)
+
+select categoryid, sum(unitprice) * unitsinstock as SUMMA
+from Products
+group by categoryid, unitsinstock
+order by categoryid asc
