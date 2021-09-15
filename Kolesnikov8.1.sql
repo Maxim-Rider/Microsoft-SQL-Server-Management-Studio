@@ -57,7 +57,8 @@ select *
 from project inner join works_on on
 project.project_no = works_on.project_no
 
---• декартово произведение.select *
+--• декартово произведение.
+select *
 from project, works_on
 where project.project_no = works_on.project_no
 
@@ -76,7 +77,8 @@ where project_name = 'Gemini'
 
 --Упражнение 8.4
 --Выполните выборку имен и фамилий всех сотрудников, работающих в отделе
---Research или Accounting.select emp_fname, emp_lname, dept_name
+--Research или Accounting.
+select emp_fname, emp_lname, dept_name
 from department join employee on 
 department.dept_no = employee.dept_no
 where dept_name in ('Research', 'Accounting') 
@@ -113,7 +115,8 @@ where emp_no in (
 
 --Упражнение 8.8
 --Выполните выборку имен и фамилий всех сотрудников, которые начали работать над
---проектом одновременно, по крайней мере, еще с одним другим сотрудником.select emp_fname, emp_lname, enter_date
+--проектом одновременно, по крайней мере, еще с одним другим сотрудником.
+select emp_fname, emp_lname, enter_date
 from works_on w join employee e on 
 w.emp_no = e.emp_no
 group by enter_date, emp_fname, emp_lname, enter_date
